@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /carrello.html
+Disallow: /checkout.html
+Sitemap: https://aziendamedei.com/sitemap.xml
