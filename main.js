@@ -8,6 +8,14 @@
 (() => {
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  /* ---------- Smooth scroll (Lenis), se disponibile ---------- */
+  if (window.Lenis && !reduceMotion){
+    const lenis = new Lenis({ lerp: .09, wheelMultiplier: 1 });
+    const raf = t => { lenis.raf(t); requestAnimationFrame(raf); };
+    requestAnimationFrame(raf);
+    window.__lenis = lenis;
+  }
+
   /* ---------- Header ---------- */
   const header = document.querySelector(".site-header");
   if (header){

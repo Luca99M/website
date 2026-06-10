@@ -50,34 +50,38 @@
   "name": "Azienda Medei",
   "description": "Azienda agricola familiare a Coste di Trevi (Umbria): olio EVO 100% Moraiolo, pecorino di latte crudo, miele millefiori, noci e legna da ardere.",
   "image": "https://aziendamedei.com/wp-content/uploads/2025/02/11bf4ddb-1d9d-4014-947c-0e4c5b2a269a-1024x1022.png",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Loc. le Case n. 5",
-    "addressLocality": "Coste di Trevi",
-    "addressRegion": "PG",
-    "postalCode": "06039",
-    "addressCountry": "IT"
-  },
+  "address": {"@type":"PostalAddress","streetAddress":"Loc. le Case n. 5","addressLocality":"Coste di Trevi","addressRegion":"PG","postalCode":"06039","addressCountry":"IT"},
   "email": "azienda.medei@gmail.com",
   "telephone": "+393284055498",
-  "sameAs": [
-    "https://www.facebook.com/AZIENDAMEDEI",
-    "https://www.instagram.com/azienda_medei/"
-  ]
+  "sameAs": ["https://www.facebook.com/AZIENDAMEDEI","https://www.instagram.com/azienda_medei/"]
 }
 </script>
 
+<!-- Librerie animazione (solo home) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+<!-- Loader d'ingresso -->
+<div class="loader" aria-hidden="true">
+  <span class="loader-word">Azienda <em>Medei</em></span>
+  <span class="loader-line"></span>
+</div>
+
 <main id="main">
 
-  <!-- HERO (video drone: carica "drone-hero.mp4" nel repo e appare da solo) -->
+  <!-- HERO — video drone: carica "drone-hero.mp4" e parte da solo -->
   <section class="hero">
-    <div class="hero-media" data-parallax="0.18">
+    <div class="hero-media">
       <img src="https://aziendamedei.com/wp-content/uploads/2024/01/Coste-rec4-ridotto-11-scaled.jpg" alt="Gli oliveti dell'Azienda Medei sulle Coste di Trevi al tramonto" fetchpriority="high">
       <video data-video="drone-hero.mp4" muted loop playsinline autoplay preload="metadata" aria-hidden="true"></video>
     </div>
     <div class="wrap hero-inner">
       <p class="eyebrow">Coste di Trevi · Umbria</p>
-      <h1 class="reveal-words">Tre generazioni.<br>Una collina.<br><em>Un solo modo di fare le cose.</em></h1>
+      <h1 class="lines">
+        <span class="line"><span class="line-in">Tre generazioni.</span></span>
+        <span class="line"><span class="line-in">Una collina.</span></span>
+        <span class="line"><span class="line-in"><em>Un solo modo di fare le cose.</em></span></span>
+      </h1>
       <p class="lead">Quaranta ettari di oliveti Moraiolo, seicento pecore Lacaune, un frantoio e un caseificio di famiglia. Tutto quello che produciamo nasce qui, e non passa per altre mani.</p>
       <div class="hero-cta">
         <a class="btn btn-gold" href="shop.html">Acquista i nostri prodotti <span class="arrow">→</span></a>
@@ -87,23 +91,20 @@
     <p class="hero-scroll" aria-hidden="true">Scorri</p>
   </section>
 
-  <!-- MARQUEE TERRITORIO -->
-  <div class="marquee" aria-hidden="true">
-    <div class="marquee-track">
-      <span>Coste di Trevi</span><span>Moraiolo 100%</span><span>Latte crudo</span><span>Fascia olivata Assisi–Spoleto</span><span>Patrimonio agricolo GIAHS · FAO</span><span>Monte Serano</span><span>Frantoio aziendale</span><span>600 pecore Lacaune</span>
-      <span>Coste di Trevi</span><span>Moraiolo 100%</span><span>Latte crudo</span><span>Fascia olivata Assisi–Spoleto</span><span>Patrimonio agricolo GIAHS · FAO</span><span>Monte Serano</span><span>Frantoio aziendale</span><span>600 pecore Lacaune</span>
-    </div>
+  <!-- Scritta gigante in movimento -->
+  <div class="bigline" aria-hidden="true">
+    <div class="bigline-track">Olio <strong>·</strong> Pecorino <strong>·</strong> Miele <strong>·</strong> Noci <strong>·</strong> Legna <strong>·</strong> Olio <strong>·</strong> Pecorino <strong>·</strong> Miele <strong>·</strong> Noci</div>
   </div>
 
   <!-- CAPITOLO I — LA TERRA -->
   <section class="section">
     <div class="wrap">
       <div class="split">
-        <div class="split-media reveal" >
-          <img src="https://aziendamedei.com/wp-content/uploads/2023/11/WhatsApp-Image-2020-03-23-at-20.36.03-2-1024x768.jpeg" alt="Oliveti a terrazze sulle Coste di Trevi" loading="lazy" data-parallax="0.06">
+        <div class="split-media img-reveal">
+          <img src="https://aziendamedei.com/wp-content/uploads/2023/11/WhatsApp-Image-2020-03-23-at-20.36.03-2-1024x768.jpeg" alt="Oliveti a terrazze sulle Coste di Trevi" loading="lazy">
           <span class="badge">400–600 m s.l.m.</span>
         </div>
-        <div class="split-body reveal reveal-d1">
+        <div class="split-body" data-stagger>
           <p class="eyebrow"><span class="capitolo">Capitolo I</span> — La terra</p>
           <h2>Una collina che il mondo ha deciso di proteggere.</h2>
           <p>I nostri oliveti vivono nella fascia olivata Assisi–Spoleto, riconosciuta dalla FAO nel 2016 come patrimonio agricolo mondiale GIAHS. Qui si pratica un'olivicoltura che chiamano <em>eroica</em>: muretti a secco, lunette di pietra, pendii dove le macchine non arrivano e le mani sì.</p>
@@ -114,29 +115,33 @@
     </div>
   </section>
 
-  <!-- PANORAMA ORIZZONTALE — la collina scorre sotto i tuoi occhi -->
-  <section class="pano-section" data-pano aria-label="Panorama degli oliveti">
-    <div class="pano-sticky">
-      <p class="pano-badge">Le Coste di Trevi</p>
-      <div class="pano-track">
-        <img src="https://aziendamedei.com/wp-content/uploads/2024/01/Coste-rec4-ridotto-11-scaled.jpg" alt="Panorama degli oliveti sulle Coste di Trevi" loading="lazy">
+  <!-- IL VIDEO CHE SI ESPANDE — carica "drone-volo.mp4" e parte da solo -->
+  <section class="vexp">
+    <div class="vexp-head wrap" data-stagger>
+      <p class="eyebrow" style="justify-content:center">Visto dal cielo</p>
+      <h2>Da quassù si capisce<br><em>perché restiamo.</em></h2>
+    </div>
+    <div class="vexp-stage">
+      <div class="vexp-frame">
+        <img src="https://aziendamedei.com/wp-content/uploads/2025/08/il-sentiero-degli-ulivi-la-fascia-olivata-assisi-spoleto_164441-scaled-min-1024x683.jpg" alt="La fascia olivata Assisi–Spoleto vista dall'alto" loading="lazy">
+        <video data-video="drone-volo.mp4" muted loop playsinline autoplay preload="none" aria-hidden="true"></video>
+        <p class="vexp-tag">Le Coste di Trevi · volo sul territorio</p>
       </div>
-      <p class="pano-title">Quaranta ettari, <em>un orizzonte solo.</em></p>
     </div>
   </section>
 
   <!-- NUMERI -->
-  <section class="section on-dark slant-down slant-up">
+  <section class="section on-dark">
     <div class="wrap">
-      <div class="section-head center reveal">
+      <div class="section-head center" data-stagger>
         <p class="eyebrow">L'azienda in numeri</p>
         <h2>Piccoli per scelta.<br>Veri per natura.</h2>
       </div>
-      <div class="stats">
-        <div class="stat reveal"><p class="num"><span data-count="40">0</span></p><p class="label">Ettari di oliveto Moraiolo</p></div>
-        <div class="stat reveal reveal-d1"><p class="num"><span data-count="600">0</span></p><p class="label">Pecore Lacaune al pascolo</p></div>
-        <div class="stat reveal reveal-d2"><p class="num"><span data-count="3">0</span></p><p class="label">Generazioni in azienda</p></div>
-        <div class="stat reveal reveal-d3"><p class="num"><span data-count="8">0</span><sup>h</sup></p><p class="label">Dalla raccolta alla frangitura</p></div>
+      <div class="stats" data-stagger>
+        <div class="stat"><p class="num"><span data-count="40">0</span></p><p class="label">Ettari di oliveto Moraiolo</p></div>
+        <div class="stat"><p class="num"><span data-count="600">0</span></p><p class="label">Pecore Lacaune al pascolo</p></div>
+        <div class="stat"><p class="num"><span data-count="3">0</span></p><p class="label">Generazioni in azienda</p></div>
+        <div class="stat"><p class="num"><span data-count="8">0</span><sup>h</sup></p><p class="label">Dalla raccolta alla frangitura</p></div>
       </div>
     </div>
   </section>
@@ -145,11 +150,11 @@
   <section class="section on-stone">
     <div class="wrap">
       <div class="split flip">
-        <div class="split-media reveal">
+        <div class="split-media img-reveal">
           <img src="https://aziendamedei.com/wp-content/uploads/2026/03/Bottiglia-750-768x1152.png" alt="Bottiglia di olio extravergine Moraiolo Azienda Medei" loading="lazy">
           <span class="badge">Estratto a freddo · 22–23 °C</span>
         </div>
-        <div class="split-body reveal reveal-d1">
+        <div class="split-body" data-stagger>
           <p class="eyebrow"><span class="capitolo">Capitolo II</span> — L'olio</p>
           <h2>Il Moraiolo è la regina. Noi la trattiamo come tale.</h2>
           <p>Cento per cento Moraiolo, raccolto al punto giusto e franto nel nostro frantoio entro otto ore — prima che l'ossidazione possa anche solo iniziare. Gramolatura mai oltre i 23 minuti, conservazione sotto azoto.</p>
@@ -168,11 +173,11 @@
   <section class="section">
     <div class="wrap">
       <div class="split">
-        <div class="split-media reveal">
-          <img src="https://aziendamedei.com/wp-content/uploads/2024/01/caseificio-222-1-1024x836.jpg" alt="Forme di pecorino nel caseificio aziendale Medei" loading="lazy" data-parallax="0.05">
+        <div class="split-media img-reveal">
+          <img src="https://aziendamedei.com/wp-content/uploads/2024/01/caseificio-222-1-1024x836.jpg" alt="Forme di pecorino nel caseificio aziendale Medei" loading="lazy">
           <span class="badge">Latte crudo · non pastorizzato</span>
         </div>
-        <div class="split-body reveal reveal-d1">
+        <div class="split-body" data-stagger>
           <p class="eyebrow"><span class="capitolo">Capitolo III</span> — Il gregge</p>
           <h2>Seicento pecore felici fanno un formaggio che non si dimentica.</h2>
           <p>Le nostre Lacaune pascolano libere nei prati umbri. Il loro latte arriva crudo nel caseificio aziendale, riscaldato appena a 38 gradi: niente pastorizzazione, perché il sapore del pascolo deve arrivare intatto fino alla tua tavola.</p>
@@ -184,8 +189,8 @@
   </section>
 
   <!-- QUOTE / RAI -->
-  <section class="quote-band slant-down">
-    <div class="wrap reveal">
+  <section class="quote-band">
+    <div class="wrap" data-stagger>
       <blockquote>Il TG3 è tornato a raccontare le Coste di Trevi — e questa volta il protagonista era il nostro Marco.</blockquote>
       <cite>Visti su Rai · TG3</cite>
     </div>
@@ -194,7 +199,7 @@
   <!-- CAPITOLO IV — IL BOSCO E IL CAMPO -->
   <section class="section on-stone">
     <div class="wrap">
-      <div class="section-head reveal">
+      <div class="section-head" data-stagger>
         <p class="eyebrow"><span class="capitolo">Capitolo IV</span> — Il bosco e il campo</p>
         <h2>Tutto quello che la collina ci regala.</h2>
         <p class="lead">Oltre l'olio e il formaggio: il noceto, le api del Monte Serano, i campi di lenticchie e il bosco gestito con rispetto.</p>
@@ -216,25 +221,14 @@
     </div>
   </section>
 
-  <!-- BANDA VIDEO DRONE (carica "drone-volo.mp4" nel repo e appare da solo) -->
-  <section class="video-band" aria-label="Volo sul territorio">
-    <img src="https://aziendamedei.com/wp-content/uploads/2025/08/il-sentiero-degli-ulivi-la-fascia-olivata-assisi-spoleto_164441-scaled-min-1024x683.jpg" alt="" aria-hidden="true" loading="lazy">
-    <video data-video="drone-volo.mp4" muted loop playsinline autoplay preload="none" aria-hidden="true"></video>
-    <div class="wrap reveal">
-      <p class="eyebrow">Visto dal cielo</p>
-      <h2 class="reveal-words">Da quassù si capisce<br><em>perché restiamo.</em></h2>
-      <p class="lead" style="color:var(--text-inv-soft)">La fascia olivata Assisi–Spoleto, patrimonio agricolo mondiale. E in mezzo, casa nostra.</p>
-    </div>
-  </section>
-
   <!-- CAPITOLO V — LA FAMIGLIA -->
-  <section class="section on-dark slant-up">
+  <section class="section on-dark">
     <div class="wrap">
       <div class="split">
-        <div class="split-media reveal">
+        <div class="split-media img-reveal">
           <img src="https://aziendamedei.com/wp-content/uploads/2025/02/Immagine-WhatsApp-2025-02-09-ore-16.27.37_aee3a202-1024x773.jpg" alt="La famiglia Medei tra gli oliveti" loading="lazy">
         </div>
-        <div class="split-body reveal reveal-d1">
+        <div class="split-body" data-stagger>
           <p class="eyebrow"><span class="capitolo">Capitolo V</span> — La famiglia</p>
           <h2>Dalla nostra famiglia alla tua.</h2>
           <p>Siamo tre generazioni unite dalla stessa passione per l'agricoltura. Questo legame è il cuore pulsante dell'azienda: il motivo per cui ogni bottiglia, ogni forma e ogni vasetto portano un nome e una faccia — la nostra.</p>
@@ -245,10 +239,15 @@
     </div>
   </section>
 
+  <!-- Seconda scritta gigante -->
+  <div class="bigline" data-dir="right" aria-hidden="true">
+    <div class="bigline-track"><strong>Trevi</strong> · Umbria · <strong>Moraiolo</strong> · Latte crudo · <strong>Trevi</strong> · Umbria · <strong>Moraiolo</strong></div>
+  </div>
+
   <!-- PRODOTTI IN EVIDENZA -->
   <section class="section">
     <div class="wrap">
-      <div class="section-head center reveal">
+      <div class="section-head center" data-stagger>
         <p class="eyebrow">Lo shop</p>
         <h2>Porta Trevi a casa tua.</h2>
         <p class="lead" style="margin-inline:auto">Spedizione in tutta Italia. Gratuita oltre 79 €.</p>
@@ -263,7 +262,7 @@
   <!-- GALLERIA TEASER -->
   <section class="section-tight on-stone">
     <div class="wrap">
-      <div class="section-head reveal">
+      <div class="section-head" data-stagger>
         <p class="eyebrow">Per immagini</p>
         <h2>La vita qui, stagione per stagione.</h2>
       </div>
@@ -278,7 +277,7 @@
 
   <!-- CTA FINALE -->
   <section class="section on-dark" style="text-align:center">
-    <div class="wrap-narrow reveal">
+    <div class="wrap-narrow" data-stagger>
       <p class="eyebrow" style="justify-content:center">Inizia da qui</p>
       <h2>Il sapore di un territorio<br>non si spiega. Si assaggia.</h2>
       <div class="hero-cta" style="justify-content:center">
@@ -341,10 +340,12 @@
   <svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.2-1.8-.9-2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7.1a8.3 8.3 0 0 1-2.4-1.5 9 9 0 0 1-1.7-2.1c-.2-.3 0-.5.1-.6l.5-.6c.2-.2.2-.3.3-.5a.6.6 0 0 0 0-.6c-.1-.2-.7-1.7-1-2.3s-.5-.5-.7-.5h-.6a1.2 1.2 0 0 0-.9.4A3.6 3.6 0 0 0 5.6 9a6.3 6.3 0 0 0 1.3 3.4 14.4 14.4 0 0 0 5.5 4.9 18.6 18.6 0 0 0 1.8.7 4.4 4.4 0 0 0 2 .1 3.3 3.3 0 0 0 2.2-1.5 2.7 2.7 0 0 0 .2-1.5c-.1-.2-.3-.3-.6-.4zM12 0a12 12 0 0 0-10.4 18L0 24l6.2-1.6A12 12 0 1 0 12 0zm0 21.8a9.8 9.8 0 0 1-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4A9.8 9.8 0 1 1 12 21.8z"/></svg>
 </a>
 <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
 <script src="products.js"></script>
 <script src="cart.js"></script>
 <script src="main.js"></script>
 <script src="effects.js"></script>
 <script src="shop.js"></script>
+<script src="home.js"></script>
 </body>
 </html>
