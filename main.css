@@ -423,3 +423,242 @@ p + p{margin-top:1em}
 @media print{
   .site-header,.site-footer,.wa-float,.oil-thread,.hero-scroll{display:none}
 }
+
+/* ============================================================
+   EFFETTI WOW — versata d'olio, ruota di pecorino, fuoco
+   (tutti disattivati con prefers-reduced-motion)
+   ============================================================ */
+
+/* Ken Burns sull'immagine hero */
+@media (prefers-reduced-motion: no-preference){
+  .hero-media img{animation:kenburns 18s linear forwards}
+  @keyframes kenburns{from{transform:scale(1.06)}to{transform:scale(1.17) translateY(-1.2%)}}
+}
+
+/* ---------- LA VERSATA D'OLIO (scroll-driven) ---------- */
+.pour-section{position:relative;height:200vh;background:var(--ink)}
+.pour-sticky{position:sticky;top:0;height:100vh;overflow:hidden;display:grid;place-items:center}
+.pour-stage{position:relative;width:min(560px,88vw);height:min(82vh,720px)}
+.pour-bottle{
+  position:absolute;top:0;left:50%;width:clamp(110px,18vw,170px);
+  transform-origin:78% 16%;
+  transform:translateX(-50%) rotate(calc(var(--tilt,0) * 112deg));
+  filter:drop-shadow(0 18px 40px rgba(0,0,0,.55));
+  will-change:transform;z-index:3;
+}
+.pour-stream{
+  position:absolute;top:21%;left:50%;translate:-50%;
+  width:7px;height:46%;
+  background:linear-gradient(180deg,#E8C25C,#C2912E 60%,#A87B1F);
+  border-radius:0 0 6px 6px;
+  transform:scaleY(var(--stream,0));transform-origin:top;
+  box-shadow:0 0 18px rgba(232,194,92,.55);
+  will-change:transform;z-index:2;
+}
+.pour-stream::after{ /* riflesso che scorre lungo il filo */
+  content:"";position:absolute;inset:0;border-radius:inherit;
+  background:linear-gradient(180deg,transparent 0%,rgba(255,255,255,.55) 12%,transparent 26%);
+  background-size:100% 300%;animation:streamshine 1.6s linear infinite;
+}
+@keyframes streamshine{to{background-position:0 300%}}
+.pour-pool{
+  position:absolute;left:50%;bottom:13%;translate:-50%;
+  width:min(380px,70vw);height:64px;border-radius:50%;
+  background:radial-gradient(ellipse at 50% 38%,#EFD083 0%,#C2912E 55%,#8F6717 100%);
+  transform:scale(calc(.15 + var(--pool,0) * .85));
+  opacity:var(--pool,0);
+  box-shadow:0 0 60px rgba(194,145,46,calc(var(--pool,0)*.5)), inset 0 6px 18px rgba(255,255,255,.35);
+  will-change:transform,opacity;
+}
+.pour-drop{ /* gocce che rimbalzano dal piatto */
+  position:absolute;left:50%;bottom:18%;width:9px;height:11px;border-radius:50% 50% 50% 50%/60% 60% 40% 40%;
+  background:#E2B84F;opacity:0;
+}
+.pour-stage.is-pouring .pour-drop{animation:dropbounce 1.5s ease-out infinite}
+.pour-drop:nth-child(4){margin-left:-46px;animation-delay:.35s}
+.pour-drop:nth-child(5){margin-left:42px;animation-delay:.8s}
+@keyframes dropbounce{
+  0%{opacity:0;transform:translate(0,0) scale(.7)}
+  12%{opacity:.95}
+  100%{opacity:0;transform:translate(var(--dx,18px),-86px) scale(.45)}
+}
+.pour-caption{
+  position:absolute;inset:auto 0 0 0;text-align:center;
+  opacity:var(--caption,0);transform:translateY(calc((1 - var(--caption,0)) * 26px));
+  will-change:opacity,transform;
+}
+.pour-caption h2{color:var(--text-inv);font-size:var(--size-h2)}
+.pour-caption h2 em{color:var(--gold-soft)}
+.pour-caption p{color:var(--text-inv-soft);max-width:34em;margin:1rem auto 0}
+.pour-hint{position:absolute;top:1.6rem;left:0;right:0;text-align:center;color:var(--text-inv-soft);
+  font-size:.74rem;letter-spacing:.28em;text-transform:uppercase;opacity:calc(1 - var(--tilt,0)*1.6)}
+
+/* ---------- LA RUOTA DI PECORINO (rotola con lo scroll) ---------- */
+.wheel-section{position:relative;height:175vh;background:var(--stone)}
+.wheel-sticky{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;align-items:center}
+.wheel-stage{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,4rem);align-items:center;width:min(var(--wrap),92%);margin-inline:auto}
+.wheel-disc{
+  position:relative;aspect-ratio:1;width:min(440px,78vw);margin-inline:auto;border-radius:50%;
+  transform:rotate(calc(var(--roll,0) * 360deg));
+  will-change:transform;
+  filter:drop-shadow(0 30px 60px rgba(28,34,24,.35));
+}
+.wheel-disc img{width:100%;height:100%;object-fit:contain}
+.wheel-orbit{ /* tacche da "ruota di stagionatura" che girano con la forma */
+  position:absolute;inset:-7%;border-radius:50%;border:2px dashed rgba(156,91,56,.4);
+}
+.wheel-orbit::before,.wheel-orbit::after{
+  content:"";position:absolute;width:13px;height:13px;border-radius:50%;background:var(--gold);
+  top:50%;left:-7px;translate:0 -50%;box-shadow:0 0 0 5px rgba(194,145,46,.18);
+}
+.wheel-orbit::after{left:auto;right:-7px}
+.wheel-body .stat-row{display:flex;gap:2.2rem;margin-top:var(--space-4)}
+.wheel-days{
+  font-family:var(--font-display);font-size:clamp(3rem,7vw,5rem);color:var(--clay);line-height:1;
+}
+.wheel-days small{display:block;font-family:var(--font-body);font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;color:var(--text-soft);margin-top:.4rem}
+
+/* ---------- IL FUOCO (legna che arde) ---------- */
+.fire-section{position:relative;background:radial-gradient(120% 90% at 50% 100%, #3A1F0C 0%, var(--ink) 55%);overflow:hidden;padding:var(--space-7) 0 0}
+.fire-scene{position:relative;width:min(680px,92vw);margin:var(--space-5) auto 0}
+.fire-wood{display:block;width:100%;border-radius:var(--radius) var(--radius) 0 0;
+  -webkit-mask-image:linear-gradient(180deg,#000 72%,transparent);mask-image:linear-gradient(180deg,#000 72%,transparent)}
+.fire-glow{
+  position:absolute;left:50%;bottom:18%;translate:-50%;width:130%;height:120%;pointer-events:none;
+  background:radial-gradient(50% 45% at 50% 78%, rgba(255,140,40,.34), transparent 70%);
+  animation:glowpulse 2.6s ease-in-out infinite alternate;mix-blend-mode:screen;
+}
+@keyframes glowpulse{from{opacity:.65;transform:translateX(-50%) scale(.96)}to{opacity:1;transform:translateX(-50%) scale(1.05)}}
+.flames{position:absolute;left:50%;bottom:24%;translate:-50%;width:62%;height:55%;pointer-events:none}
+.flame{
+  position:absolute;bottom:0;border-radius:50% 50% 32% 68%/72% 72% 28% 28%;
+  mix-blend-mode:screen;filter:blur(7px);transform-origin:50% 100%;
+  animation:flick 1s ease-in-out infinite alternate;
+}
+.flame.f1{left:14%;width:21%;height:62%;background:radial-gradient(circle at 50% 78%,#FFE08A 0%,#FF9E2C 45%,#E0461A 78%,transparent 92%);animation-duration:.85s}
+.flame.f2{left:38%;width:26%;height:88%;background:radial-gradient(circle at 50% 80%,#FFF3B0 0%,#FFB23E 40%,#E8561C 75%,transparent 92%);animation-duration:1.05s;animation-delay:.2s}
+.flame.f3{left:62%;width:20%;height:66%;background:radial-gradient(circle at 50% 78%,#FFE08A 0%,#FF9E2C 45%,#DE3F18 78%,transparent 92%);animation-duration:.9s;animation-delay:.45s}
+.flame.f4{left:28%;width:14%;height:46%;background:radial-gradient(circle at 50% 80%,#FFF6C8 0%,#FFC964 55%,transparent 90%);animation-duration:.7s;animation-delay:.1s}
+.flame.f5{left:55%;width:13%;height:42%;background:radial-gradient(circle at 50% 80%,#FFF6C8 0%,#FFC964 55%,transparent 90%);animation-duration:.75s;animation-delay:.55s}
+@keyframes flick{
+  from{transform:scaleY(.92) scaleX(1.04) rotate(-2.5deg)}
+  to{transform:scaleY(1.1) scaleX(.94) rotate(2.5deg)}
+}
+.spark{
+  position:absolute;bottom:30%;width:5px;height:5px;border-radius:50%;
+  background:#FFC46B;box-shadow:0 0 8px #FF9E2C;opacity:0;pointer-events:none;
+  animation:sparkrise var(--dur,3s) linear var(--delay,0s) infinite;
+}
+@keyframes sparkrise{
+  0%{opacity:0;transform:translate(0,0) scale(1)}
+  8%{opacity:1}
+  100%{opacity:0;transform:translate(var(--sway,14px),-46vh) scale(.2)}
+}
+.fire-caption{text-align:center;max-width:680px;margin-inline:auto}
+.fire-caption h2{color:var(--text-inv)}
+.fire-caption h2 em{color:#FFB23E}
+.fire-caption p{color:var(--text-inv-soft);margin-top:1rem}
+
+/* Responsive effetti */
+@media (max-width:900px){
+  .wheel-stage{grid-template-columns:1fr;text-align:center;gap:1.5rem}
+  .wheel-body .stat-row{justify-content:center}
+  .pour-section{height:170vh}
+  .wheel-section{height:150vh}
+}
+@media (prefers-reduced-motion:reduce){
+  .pour-section,.wheel-section{height:auto;padding:var(--space-6) 0}
+  .pour-sticky,.wheel-sticky{position:static;height:auto}
+  .pour-stage{--tilt:1;--stream:1;--pool:1;--caption:1}
+  .wheel-disc{--roll:0}
+  .flame,.spark,.fire-glow,.pour-stream::after{animation:none}
+}
+
+/* ============================================================
+   HOME CINEMATICA — video drone, panorama orizzontale,
+   tagli diagonali, titoli parola-per-parola
+   ============================================================ */
+
+/* ---------- Video nel hero (con fallback immagine) ---------- */
+.hero-media video{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  opacity:0;transition:opacity 1.2s ease;
+}
+.hero-media video.is-ready{opacity:1}
+
+/* ---------- Uscita cinematografica del hero ---------- */
+@media (prefers-reduced-motion: no-preference){
+  .hero-inner{
+    transform:translateY(calc(var(--exit,0) * -70px));
+    opacity:calc(1 - var(--exit,0) * 1.25);
+    will-change:transform,opacity;
+  }
+  .hero-media{
+    transform:scale(calc(1 + var(--exit,0) * .12));
+    filter:brightness(calc(1 - var(--exit,0) * .45));
+    will-change:transform,filter;
+  }
+}
+
+/* ---------- Tagli diagonali tra le sezioni ---------- */
+.slant-down{clip-path:polygon(0 0, 100% 4.5vw, 100% 100%, 0 100%);margin-top:-4.5vw;padding-top:calc(var(--space-7) + 4.5vw)}
+.slant-up{clip-path:polygon(0 0, 100% 0, 100% calc(100% - 4.5vw), 0 100%);padding-bottom:calc(var(--space-7) + 4.5vw)}
+@media (max-width:700px){
+  .slant-down{clip-path:polygon(0 0, 100% 8vw, 100% 100%, 0 100%);margin-top:-8vw;padding-top:calc(var(--space-6) + 8vw)}
+  .slant-up{clip-path:polygon(0 0, 100% 0, 100% calc(100% - 8vw), 0 100%);padding-bottom:calc(var(--space-6) + 8vw)}
+}
+
+/* ---------- Panorama orizzontale scroll-driven ---------- */
+.pano-section{position:relative;height:260vh;background:var(--ink)}
+.pano-sticky{position:sticky;top:0;height:100vh;overflow:hidden}
+.pano-track{
+  position:absolute;top:0;left:0;height:100%;width:240%;
+  transform:translateX(calc(var(--pan,0) * -58%));
+  will-change:transform;
+}
+.pano-track img{width:100%;height:100%;object-fit:cover}
+.pano-sticky::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(90deg, rgba(28,34,24,.55), transparent 25%, transparent 75%, rgba(28,34,24,.55)),
+             linear-gradient(180deg, rgba(28,34,24,.35), transparent 30%, transparent 70%, rgba(28,34,24,.6))}
+.pano-title{
+  position:absolute;bottom:12%;left:0;white-space:nowrap;z-index:2;
+  font-family:var(--font-display);font-style:italic;font-weight:480;
+  font-size:clamp(3rem,10vw,8rem);color:rgba(251,250,245,.95);
+  text-shadow:0 6px 40px rgba(28,34,24,.6);
+  transform:translateX(calc(20vw - var(--pan,0) * 60vw));
+  will-change:transform;pointer-events:none;
+}
+.pano-title em{color:var(--gold-soft)}
+.pano-badge{
+  position:absolute;top:14%;left:50%;translate:-50%;z-index:2;
+  font-size:.75rem;letter-spacing:.3em;text-transform:uppercase;color:var(--text-inv-soft);
+  display:flex;align-items:center;gap:.8rem;
+}
+.pano-badge::before,.pano-badge::after{content:"";width:42px;height:1px;background:var(--gold)}
+
+/* ---------- Banda video drone ---------- */
+.video-band{position:relative;isolation:isolate;color:var(--text-inv);overflow:hidden}
+.video-band video,.video-band > img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+.video-band video{opacity:0;transition:opacity 1.2s ease}
+.video-band video.is-ready{opacity:1}
+.video-band::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(28,34,24,.55),rgba(28,34,24,.25) 45%,rgba(28,34,24,.7))}
+.video-band .wrap{min-height:88vh;display:flex;flex-direction:column;justify-content:flex-end;padding-block:var(--space-6)}
+.video-band h2{color:#fff}
+.video-band h2 em{color:var(--gold-soft)}
+
+/* ---------- Titoli parola per parola ---------- */
+.reveal-words .w{
+  display:inline-block;opacity:0;transform:translateY(.7em) rotate(2.2deg);
+  transition:opacity .7s var(--ease), transform .7s var(--ease);
+  transition-delay:calc(var(--wi) * 90ms);
+}
+.reveal-words.in .w{opacity:1;transform:none}
+
+@media (prefers-reduced-motion:reduce){
+  .pano-section{height:auto}
+  .pano-sticky{position:static;height:60vh}
+  .pano-track{width:100%;transform:none}
+  .pano-title{transform:none;left:5%}
+  .reveal-words .w{opacity:1;transform:none;transition:none}
+  .hero-media video,.video-band video{display:none}
+}

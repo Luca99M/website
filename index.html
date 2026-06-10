@@ -69,14 +69,15 @@
 
 <main id="main">
 
-  <!-- HERO -->
+  <!-- HERO (video drone: carica "drone-hero.mp4" nel repo e appare da solo) -->
   <section class="hero">
     <div class="hero-media" data-parallax="0.18">
       <img src="https://aziendamedei.com/wp-content/uploads/2024/01/Coste-rec4-ridotto-11-scaled.jpg" alt="Gli oliveti dell'Azienda Medei sulle Coste di Trevi al tramonto" fetchpriority="high">
+      <video data-video="drone-hero.mp4" muted loop playsinline autoplay preload="metadata" aria-hidden="true"></video>
     </div>
     <div class="wrap hero-inner">
       <p class="eyebrow">Coste di Trevi · Umbria</p>
-      <h1>Tre generazioni.<br>Una collina.<br><em>Un solo modo di fare le cose.</em></h1>
+      <h1 class="reveal-words">Tre generazioni.<br>Una collina.<br><em>Un solo modo di fare le cose.</em></h1>
       <p class="lead">Quaranta ettari di oliveti Moraiolo, seicento pecore Lacaune, un frantoio e un caseificio di famiglia. Tutto quello che produciamo nasce qui, e non passa per altre mani.</p>
       <div class="hero-cta">
         <a class="btn btn-gold" href="shop.html">Acquista i nostri prodotti <span class="arrow">→</span></a>
@@ -113,8 +114,19 @@
     </div>
   </section>
 
+  <!-- PANORAMA ORIZZONTALE — la collina scorre sotto i tuoi occhi -->
+  <section class="pano-section" data-pano aria-label="Panorama degli oliveti">
+    <div class="pano-sticky">
+      <p class="pano-badge">Le Coste di Trevi</p>
+      <div class="pano-track">
+        <img src="https://aziendamedei.com/wp-content/uploads/2024/01/Coste-rec4-ridotto-11-scaled.jpg" alt="Panorama degli oliveti sulle Coste di Trevi" loading="lazy">
+      </div>
+      <p class="pano-title">Quaranta ettari, <em>un orizzonte solo.</em></p>
+    </div>
+  </section>
+
   <!-- NUMERI -->
-  <section class="section on-dark">
+  <section class="section on-dark slant-down slant-up">
     <div class="wrap">
       <div class="section-head center reveal">
         <p class="eyebrow">L'azienda in numeri</p>
@@ -172,7 +184,7 @@
   </section>
 
   <!-- QUOTE / RAI -->
-  <section class="quote-band">
+  <section class="quote-band slant-down">
     <div class="wrap reveal">
       <blockquote>Il TG3 è tornato a raccontare le Coste di Trevi — e questa volta il protagonista era il nostro Marco.</blockquote>
       <cite>Visti su Rai · TG3</cite>
@@ -204,8 +216,19 @@
     </div>
   </section>
 
+  <!-- BANDA VIDEO DRONE (carica "drone-volo.mp4" nel repo e appare da solo) -->
+  <section class="video-band" aria-label="Volo sul territorio">
+    <img src="https://aziendamedei.com/wp-content/uploads/2025/08/il-sentiero-degli-ulivi-la-fascia-olivata-assisi-spoleto_164441-scaled-min-1024x683.jpg" alt="" aria-hidden="true" loading="lazy">
+    <video data-video="drone-volo.mp4" muted loop playsinline autoplay preload="none" aria-hidden="true"></video>
+    <div class="wrap reveal">
+      <p class="eyebrow">Visto dal cielo</p>
+      <h2 class="reveal-words">Da quassù si capisce<br><em>perché restiamo.</em></h2>
+      <p class="lead" style="color:var(--text-inv-soft)">La fascia olivata Assisi–Spoleto, patrimonio agricolo mondiale. E in mezzo, casa nostra.</p>
+    </div>
+  </section>
+
   <!-- CAPITOLO V — LA FAMIGLIA -->
-  <section class="section on-dark">
+  <section class="section on-dark slant-up">
     <div class="wrap">
       <div class="split">
         <div class="split-media reveal">
@@ -321,6 +344,7 @@
 <script src="products.js"></script>
 <script src="cart.js"></script>
 <script src="main.js"></script>
+<script src="effects.js"></script>
 <script src="shop.js"></script>
 </body>
 </html>
