@@ -13,12 +13,6 @@
   }
   gsap.registerPlugin(ScrollTrigger);
 
-  /* Sincronizza ScrollTrigger con Lenis (smooth scroll) */
-  if (window.__lenis){
-    window.__lenis.on("scroll", ScrollTrigger.update);
-    gsap.ticker.lagSmoothing(0);
-  }
-
   const EASE = "power4.out";
 
   /* ---------- 1. Hero: titolo a righe + ingresso orchestrato ---------- */
@@ -43,17 +37,15 @@
   /* ---------- 2. Video che si espande a tutto schermo ---------- */
   const frame = document.querySelector(".vexp-frame");
   if (frame){
+    /* Si espande mentre scorre nel viewport: lo scroll non si blocca mai */
     gsap.fromTo(frame,
-      { clipPath: "inset(26% 30% 26% 30% round 22px)" },
+      { clipPath: "inset(22% 26% 22% 26% round 22px)" },
       { clipPath: "inset(0% 0% 0% 0% round 0px)", ease: "none",
-        scrollTrigger: {
-          trigger: ".vexp-stage", start: "top top", end: "+=130%",
-          scrub: .6, pin: true, anticipatePin: 1
-        }
+        scrollTrigger: { trigger: ".vexp-stage", start: "top 92%", end: "top 8%", scrub: .4 }
       });
-    gsap.fromTo(".vexp-frame video, .vexp-frame > img", { scale: 1.25 }, {
+    gsap.fromTo(".vexp-frame video, .vexp-frame > img", { scale: 1.2 }, {
       scale: 1, ease: "none",
-      scrollTrigger: { trigger: ".vexp-stage", start: "top top", end: "+=130%", scrub: .6 }
+      scrollTrigger: { trigger: ".vexp-stage", start: "top 92%", end: "top 8%", scrub: .4 }
     });
   }
 
